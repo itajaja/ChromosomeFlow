@@ -5,8 +5,20 @@ using System.Collections.Generic;
 namespace test
 {
 
+  /// <summary>
+  /// Level parser translate the file level into an instance of the level class
+  /// </summary>
 	class LevelParser
 	{
+    /// <summary>
+    /// Parses the file.
+    /// </summary>
+    /// <returns>
+    /// The parsed level
+    /// </returns>
+    /// <param name='lines'>
+    /// Lines, each one representing a row.
+    /// </param>
 		public Level ParseFile(string[] lines){
 			Level level;
 			int size = lines.Length;
@@ -43,10 +55,25 @@ namespace test
 			return level;
 		}
 
+    /// <summary>
+    /// Converts a number to its matrix location.
+    /// </summary>
+    /// <returns>
+    /// row and column numbers
+    /// </returns>
+    /// <param name='n'>
+    /// input number
+    /// </param>
+    /// <param name='size'>
+    /// Size of the matrix.
+    /// </param>
 		private int[] convertToMatrix(int n, int size){
 			return new int[2]{n/size,n%size};
 		}
 
+    /// <summary>
+    /// Counts the occurences of a character in a string.
+    /// </summary>
 		private int Count(string s,char c){
 			int counter = 0;
 			foreach (var ch in s)
@@ -55,6 +82,12 @@ namespace test
 			return counter;
 		}
 
+    /// <summary>
+    /// Finds the specified character in a string.
+    /// </summary>
+    /// <returns>
+    /// The position of the character in the string. -1 if no character is found
+    /// </returns>
 		private int Find(string s, char c){
 			for (int i = 0; i < s.Length; i++) {
 				if(s[i]==c)
@@ -63,6 +96,12 @@ namespace test
 			return -1;
 		}
 
+    /// <summary>
+    /// Finds all the occurrences of the specified character in a string.
+    /// </summary>
+    /// <returns>
+    /// A list with all the position of the character
+    /// </returns>
 		private List<int> FindMul (string s, char c)
 		{
 			List<int> found = new List<int>();
@@ -76,6 +115,9 @@ namespace test
 			return found;
 		}
 
+    /// <summary>
+    /// Concatenates the array of string in a single string.
+    /// </summary>
 		private string Flatten(string[] strings){
 			StringBuilder sb = new StringBuilder();
 			foreach (string str in strings) {
@@ -87,7 +129,9 @@ namespace test
 	}
 
 
-
+  /// <summary>
+  /// Parse exception. Thrown when errors are found when parsing the level file
+  /// </summary>
 	public class ParseException:Exception
 	{
 		public ParseException(string message)

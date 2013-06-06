@@ -3,8 +3,19 @@ using System.Collections.Generic;
 
 namespace test
 {
+
+  /// <summary>
+  /// Class representing an instance of the level.
+  /// A level stores all the information of the paths
+  /// </summary>
 	class Level{
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="test.Level"/> class.
+    /// </summary>
+    /// <param name='size'>
+    /// Size of the board
+    /// </param>
 		public Level(int size){
 			this.size = size;
 			this.paths = new List<Path>();
@@ -32,6 +43,10 @@ namespace test
 		private int size;
 	}
 
+
+  /// <summary>
+  /// A path contains the location of the start and the end points to be connected
+  /// </summary>
 	class Path{
 
 		public int XStart {
