@@ -10,11 +10,25 @@ namespace test
   /// </summary>
 	class LevelParser
 	{
+
     /// <summary>
     /// Parses the file.
     /// </summary>
     /// <returns>
-    /// The parsed level
+    /// The parsed level.
+    /// </returns>
+    /// <param name='filename'>
+    /// the complete path to the file
+    /// </param>
+    public Level ParseFile(string filename){
+      return ParseFile(System.IO.File.ReadAllLines(@"../../testlevel1.cf"));
+    }
+
+    /// <summary>
+    /// Parses the file.
+    /// </summary>
+    /// <returns>
+    /// The parsed level.
     /// </returns>
     /// <param name='lines'>
     /// Lines, each one representing a row.
@@ -128,9 +142,8 @@ namespace test
 
 	}
 
-
   /// <summary>
-  /// Parse exception. Thrown when errors are found when parsing the level file
+  /// Exception thrown by the parser. Thrown when errors are found when parsing the level file
   /// </summary>
 	public class ParseException:Exception
 	{
