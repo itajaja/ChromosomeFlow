@@ -31,10 +31,14 @@ namespace test
 					p.XEnd = convertToMatrix(occurencesList[1],size)[1];
 					level.Paths.Add(p);
 				}else
-					throw new ParseException("path "+c+" has wrong number of heads: "+occurencesList.Count+"(must have 2)");
+					throw new ParseException("The path "+c+" has wrong number of heads: "+occurencesList.Count+"(must have 2)");
 			}
 			if (level.Paths.Count == 0) {
-				throw new ParseException("level contains no Paths!");
+				throw new ParseException("The level contains no Paths!");
+			}
+			foreach (char c in levelString) {
+				if(c != '0' && !(c>='A' && c<'A'+level.Paths.Count))
+					throw new ParseException("Invalid Character: "+c);
 			}
 			return level;
 		}
