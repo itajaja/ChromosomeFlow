@@ -40,4 +40,7 @@
     <Compile Include="Level.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="testlevel1.cf" />
+  </ItemGroup>
 </Project>
