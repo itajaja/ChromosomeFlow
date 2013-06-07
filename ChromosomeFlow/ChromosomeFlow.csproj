@@ -38,9 +38,14 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="LevelParser.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="Solution.cs" />
+    <Compile Include="Genetic Solver\Solver.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="testlevel1.cf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Genetic Solver\" />
   </ItemGroup>
 </Project>
