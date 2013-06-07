@@ -55,15 +55,15 @@ namespace test
 					p.XStart = convertToMatrix(occurencesList[0],size)[1];
 					p.YEnd = convertToMatrix(occurencesList[1],size)[0];
 					p.XEnd = convertToMatrix(occurencesList[1],size)[1];
-					level.Paths.Add(p);
+					level.AddPath(p);
 				}else
 					throw new ParseException("The path "+c+" has wrong number of heads: "+occurencesList.Count+"(must have 2)");
 			}
-			if (level.Paths.Count == 0) {
+			if (level.NumPaths() == 0) {
 				throw new ParseException("The level contains no Paths!");
 			}
 			foreach (char c in levelString) {
-				if(c != '0' && !(c>='A' && c<'A'+level.Paths.Count))
+				if(c != '0' && !(c>='A' && c<'A'+level.NumPaths()))
 					throw new ParseException("Invalid Character: "+c);
 			}
 			return level;

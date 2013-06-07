@@ -14,8 +14,9 @@ namespace test
 		{
 			Console.WriteLine ("parsing the file...");
 			LevelParser parser = new LevelParser();
-			parser.ParseFile(@"../../testlevel1.cf");
-			Console.WriteLine("parsing successfull");
+			Level l = parser.ParseFile(@"../../testlevel1.cf");
+			Console.WriteLine(l.ToString());
+      Console.WriteLine("parsing successfull");
 		}
 	}
 
