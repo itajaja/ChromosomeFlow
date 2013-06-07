@@ -21,7 +21,7 @@ namespace test
     /// the complete path to the file
     /// </param>
     public Level ParseFile(string filename){
-      return ParseFile(System.IO.File.ReadAllLines(@"../../testlevel1.cf"));
+      return ParseFile(System.IO.File.ReadAllLines(filename));
     }
 
     /// <summary>
@@ -36,19 +36,25 @@ namespace test
 		public Level ParseFile(string[] lines){
 			Level level;
 			int size = lines.Length;
+      //initialize a new level
 			level = new Level(size);
+
+      //Check that the level is a square
 			for (int r = 0; r < size; r++) {
 				string line = lines[r];
 				if (size != line.Length) {
 					throw new ParseException("The file is not a square, heigth is "+size+" but the line "+line+" has "+line.Length +" characters");
 				}
 			}
+
 			string levelString = Flatten(lines);
-			for (char c = 'A'; c < 'Z'; c++) {
+      //Find all the paths. paths must be named starting from letter A, increasing alphabetically
+      for (char c = 'A'; c < 'Z'; c++) {
 				List<int> occurencesList = FindMul(levelString,c);
+        //Path not found, exit the loop
 				if(occurencesList.Count == 0){
 					break;
-				}else
+				}else //Path found, create it and inser into the level
 				if(occurencesList.Count == 2){
 					Path p = new Path();
 					p.YStart = convertToMatrix(occurencesList[0],size)[0];
@@ -56,16 +62,21 @@ namespace test
 					p.YEnd = convertToMatrix(occurencesList[1],size)[0];
 					p.XEnd = convertToMatrix(occurencesList[1],size)[1];
 					level.AddPath(p);
-				}else
+				}else //Path found with illegal number of ends
 					throw new ParseException("The path "+c+" has wrong number of heads: "+occurencesList.Count+"(must have 2)");
 			}
+
+      //Throw exception if no path is found
 			if (level.NumPaths() == 0) {
 				throw new ParseException("The level contains no Paths!");
 			}
+
+      //Check that all the characters are ok
 			foreach (char c in levelString) {
 				if(c != '0' && !(c>='A' && c<'A'+level.NumPaths()))
 					throw new ParseException("Invalid Character: "+c);
 			}
+
 			return level;
 		}
 
