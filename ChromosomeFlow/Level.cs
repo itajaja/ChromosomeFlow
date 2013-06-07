@@ -5,11 +5,23 @@ using System.Collections.Generic;
 namespace test
 {
 
+  //Immutable interface for level
+  interface ILevel
+  {
+    Path at(int x, int y); 
+
+    int NumPaths(); 
+
+    int Size {
+      get;
+    }
+  }
+
   /// <summary>
   /// Class representing an instance of the level.
   /// A level stores all the information of the paths
   /// </summary>
-	class Level{
+	class Level: ILevel{
 
     /// <summary>
     /// Initializes a new instance of the <see cref="test.Level"/> class.
@@ -37,6 +49,16 @@ namespace test
     /// </summary>
     public void AddPath(int xStart, int yStart, int xEnd, int yEnd){
       AddPath(new Path(xStart, yStart, xEnd, yEnd));
+    }
+
+    /// <summary>
+    /// Gets the matrix representation of the level
+    /// </summary>
+    /// <returns>
+    /// A matrix representation. changes to this object don't modify the level
+    /// </returns>
+    public Path[,] getMatrixRepresentation(){
+      return levelMatrix.Clone();
     }
 
     public override string ToString(){
@@ -87,17 +109,23 @@ namespace test
 			}
 		}
 		private int size;
-    
+
     private List<Path> paths;
 
     private Path[,] levelMatrix;
 	}
 
+  /// <summary>
+  /// An element is a generic object that can be placed on the level
+  /// </summary>
+  abstract class Element{
+
+  }
 
   /// <summary>
   /// A path contains the location of the start and the end points to be connected
   /// </summary>
-	class Path{
+	class Path : Element{
 
     public Path(){
 
